@@ -10,7 +10,7 @@ const connectDB = async () => {
       } catch (error) { 
         console.log("MONGOOSE connection failed" , error);
          process.exit(1)
-      }  
+      }   
 } 
-
+ 
 export default connectDB
