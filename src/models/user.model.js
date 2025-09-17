@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema(
          required:true,
       },
 
-      coverimage:{
+      coverImage:{
           type:String,     /// we use the cloudinary url 
       },
 
@@ -59,12 +59,12 @@ const userSchema = new mongoose.Schema(
 
 userSchema.pre("save" , async function(next) {     /// password encrption with help of pre of mongoose middlewares
     if(!this.isModified("password")) return next();
-    this.password = bcrypt.hash(this.password , 10)
+    this.password = await bcrypt.hash(this.password , 10)
     next()
 })
 
 userSchema.methods.isPasswordCorrect = async function     /// it check the password is correct or not
- (password){
+    (password){
     return await bcrypt.compare(password , this.password)
 }
 
